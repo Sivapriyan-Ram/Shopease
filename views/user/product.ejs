@@ -1,0 +1,28 @@
+<%- include('../partials/header') %>
+
+<a href="/dashboard" class="btn btn-secondary btn-sm mb-3">← Back to Products</a>
+
+<div class="card shadow-sm" style="max-width: 700px; margin: 0 auto;">
+  <img src="<%= product.image %>" class="card-img-top" alt="<%= product.name %>" style="height: 300px; object-fit: cover;" />
+  <div class="card-body">
+    <h3><%= product.name %></h3>
+    <p class="text-muted"><%= product.category %></p>
+    <p><%= product.description %></p>
+    <h4 class="fw-bold">₹<%= product.price %></h4>
+
+    <% if (product.stock > 0) { %>
+      <p class="text-success">In Stock (<%= product.stock %> available)</p>
+      <form action="/cart/add/<%= product._id %>" method="POST">
+        <div class="mb-3" style="max-width: 150px;">
+          <label class="form-label">Quantity</label>
+          <input type="number" name="quantity" class="form-control" value="1" min="1" max="<%= product.stock %>" required />
+        </div>
+        <button type="submit" class="btn btn-success">Add to Cart</button>
+      </form>
+    <% } else { %>
+      <p class="text-danger">Out of Stock</p>
+    <% } %>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

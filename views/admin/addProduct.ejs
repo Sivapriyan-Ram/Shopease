@@ -1,0 +1,44 @@
+<%- include('../partials/header') %>
+
+<h2>Add New Product</h2>
+
+<% if (error) { %>
+  <div class="alert alert-danger"><%= error %></div>
+<% } %>
+
+<form action="/admin/products/add" method="POST" class="card p-4 shadow-sm" style="max-width: 600px;">
+  <div class="mb-3">
+    <label class="form-label">Product Name</label>
+    <input type="text" name="name" class="form-control" required />
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Description</label>
+    <textarea name="description" class="form-control" rows="3" required></textarea>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Price (₹)</label>
+    <input type="number" name="price" class="form-control" min="0" required />
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Image URL (optional)</label>
+    <input type="text" name="image" class="form-control" placeholder="https://..." />
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Stock Quantity</label>
+    <input type="number" name="stock" class="form-control" min="0" required />
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Category</label>
+    <input type="text" name="category" class="form-control" placeholder="e.g. Electronics" />
+  </div>
+
+  <button type="submit" class="btn btn-success">Add Product</button>
+  <a href="/admin" class="btn btn-secondary">Cancel</a>
+</form>
+
+<%- include('../partials/footer') %>
